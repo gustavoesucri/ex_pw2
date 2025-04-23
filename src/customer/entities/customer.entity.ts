@@ -2,6 +2,8 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 
 @Entity({name: 'customer'})
 export class CustomerEntity {
+    // ONE customer para MANY order
+
     //id
     @PrimaryGeneratedColumn()
     id: number;
