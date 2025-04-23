@@ -7,16 +7,27 @@ import { ProductTypeModule } from './product_type/product_type.module';
 import { ProductModule } from './product/product.module';
 import { OrderItemModule } from './order_item/order_item.module';
 import { OrderModule } from './order/order.module';
-import { OrderModule } from './order/order.module';
-import { OrderItemModule } from './order_item/order_item.module';
-import { ProductModule } from './product/product.module';
-import { ProductTypeModule } from './product_type/product_type.module';
-import { ManufacturerModule } from './manufacturer/manufacturer.module';
-import { CustomerModule } from './customer/customer.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [CustomerModule, OrderModule, OrderItemModule, ProductModule, ProductTypeModule, ManufacturerModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: '127.0.0.1',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'pw2_exer',
+      autoLoadEntities: true,
+      synchronize: true
+    }),
+    CustomerModule, 
+    OrderModule, 
+    OrderItemModule, 
+    ProductModule, 
+    ProductTypeModule, 
+    ManufacturerModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
